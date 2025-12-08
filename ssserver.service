@@ -1,0 +1,17 @@
+[Unit]
+Description=Shadowsocks Server Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+# 替换为您的可执行文件和配置路径
+ExecStart=/ss/ssserver -c /ss/ssconfig.json
+# 重启策略：如果服务失败，则自动重启
+Restart=always
+# 重启间隔（秒）
+RestartSec=5
+
+[Install]
+# 当您运行 'systemctl enable' 时，服务会被链接到多用户环境
+WantedBy=multi-user.target
