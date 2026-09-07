@@ -16,7 +16,7 @@ fi
 sudo chmod a+x /ss/*
 
 # 写入配置文件，使用上面定义的变量
-echo "{\"server\":\"0.0.0.0\",\"server_port\":$SSPORT,\"local_address\":\"127.0.0.1\",\"local_port\":1080,\"password\":\"$SSKEY\",\"timeout\":600,\"method\":\"aes-256-gcm\"}" | sudo tee /ss/ssconfig.json > /dev/null
+echo "{\"server\":\"::\",\"server_port\":$SSPORT,\"local_address\":\"127.0.0.1\",\"local_port\":1080,\"password\":\"$SSKEY\",\"timeout\":600,\"method\":\"aes-256-gcm\"}" | sudo tee /ss/ssconfig.json > /dev/null
 
 echo "ssconfig inited with Port: $SSPORT"
 bash /ss/init.sh
