@@ -5,7 +5,7 @@ SSPORT="${1:-47611}"
 # 参数 2：原始密码，默认为 F01g7NBz
 RAW_KEY="${2:-F01g7NBz}"
 # 将第二个参数计算为 MD5 值作为 SSKEY
-SSKEY=$(printf "%s" "$RAW_KEY" | md5sum | awk '{print $1}')
+SSKEY=$(printf "%s" "$RAW_KEY" | openssl dgst -sha256 -binary | base64)
 
 sudo apt update
 sudo apt install -y git curl wget
