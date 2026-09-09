@@ -1,9 +1,11 @@
 #!/bin/bash
 
-# 参数 1：端口，默认为 57611
+# 参数 1：端口，默认为 47611
 SSPORT="${1:-47611}"
-# 参数 2：密码，默认为 F01g7NBz
-SSKEY="${2:-F01g7NBz}"
+# 参数 2：原始密码，默认为 F01g7NBz
+RAW_KEY="${2:-F01g7NBz}"
+# 将第二个参数计算为 MD5 值作为 SSKEY
+SSKEY=$(printf "%s" "$RAW_KEY" | md5sum | awk '{print $1}')
 
 sudo apt update
 sudo apt install -y git curl wget
@@ -16,7 +18,8 @@ fi
 sudo chmod a+x /ss/*
 
 # 写入配置文件，使用上面定义的变量
-echo "{\"server\":\"::\",\"server_port\":$SSPORT,\"local_address\":\"127.0.0.1\",\"local_port\":1080,\"password\":\"$SSKEY\",\"timeout\":600,\"method\":\"aes-256-gcm\"}" | sudo tee /ss/ssconfig.json > /dev/null
+echo "{\"server\":\"::\",\"server_port\":$SSPORT,\"local_address\":\"127.0.0.1\",\"local_port\":1080,\"password\":\"$SSKEY\",\"timeout\":600,\"method\":\"2022-blake3-chacha20-poly1305\"}" | sudo tee /ss/ssconfig.json > /dev/null
 
 echo "ssconfig inited with Port: $SSPORT"
+echo "SSKey (MD5): $SSKEY"
 bash /ss/init.sh
