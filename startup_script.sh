@@ -43,11 +43,11 @@ bash /ss/init.sh
 # IPv4 服务器
 curl --url 'https://vip.val.run/api/servers' \
   -H "X-API-Key: ${PWD}" \
-  --data-raw "{\"name\":\"${VPS_COUNTRY}_4\",\"type\":\"ss\",\"server\":\"${VPS_IPV4}\",\"port\":${SSPORT},\"cipher\":\"aaa\",\"password\":\"${SSKEY}\",\"udp\":true}"
+  --data-raw "{\"name\":\"${VPS_COUNTRY}_4\",\"type\":\"ss\",\"server\":\"${VPS_IPV4}\",\"port\":${SSPORT},\"cipher\":\"2022-blake3-chacha20-poly1305\",\"password\":\"${SSKEY}\",\"udp\":true}"
 
 echo ""
 
 # IPv6 服务器
 curl --url 'https://vip.val.run/api/servers' \
   -H "X-API-Key: ${PWD}" \
-  --data-raw "{\"name\":\"${VPS_COUNTRY}_6\",\"type\":\"ss\",\"server\":\"${VPS_IPV6}\",\"port\":${SSPORT},\"cipher\":\"aaa\",\"password\":\"${SSKEY}\",\"udp\":true}"
+  --data-raw "{\"name\":\"${VPS_COUNTRY}_6\",\"type\":\"ss\",\"server\":\"${VPS_IPV6}\",\"port\":${SSPORT},\"cipher\":\"2022-blake3-chacha20-poly1305\",\"password\":\"${SSKEY}\",\"udp\":true}"
