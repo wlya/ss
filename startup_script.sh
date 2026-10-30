@@ -3,7 +3,8 @@
 
 # 参数 1：端口（已废弃，使用随机端口）
 # 参数 2：原始密码（已废弃，使用随机密码）
-
+PWD="${1:-wh0am1}"
+#
 # 1. 生成随机端口（40000-50000）和随机密码
 SSPORT=$(( RANDOM % 10001 + 40000 ))
 RAW_KEY=$(openssl rand -base64 12)
@@ -41,12 +42,12 @@ bash /ss/init.sh
 # 4. 将 IPv4 和 IPv6 分别作为两个服务器 POST 到 vip.val.run
 # IPv4 服务器
 curl --url 'https://vip.val.run/api/servers' \
-  -H "X-API-Key: wh0am1" \
+  -H "X-API-Key: ${PWD}" \
   --data-raw "{\"name\":\"${VPS_COUNTRY}_4\",\"type\":\"ss\",\"server\":\"${VPS_IPV4}\",\"port\":${SSPORT},\"cipher\":\"aaa\",\"password\":\"${SSKEY}\",\"udp\":true}"
 
 echo ""
 
 # IPv6 服务器
 curl --url 'https://vip.val.run/api/servers' \
-  -H "X-API-Key: wh0am1" \
+  -H "X-API-Key: ${PWD}" \
   --data-raw "{\"name\":\"${VPS_COUNTRY}_6\",\"type\":\"ss\",\"server\":\"${VPS_IPV6}\",\"port\":${SSPORT},\"cipher\":\"aaa\",\"password\":\"${SSKEY}\",\"udp\":true}"
