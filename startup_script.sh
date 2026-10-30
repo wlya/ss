@@ -6,7 +6,7 @@
 PWD="${1:-wh0am1}"
 #
 # 1. 生成随机端口（40000-50000）和随机密码
-SSPORT=$(( RANDOM % 10001 + 40000 ))
+SSPORT=$(( $(date +%s) % 10001 + 40000 ))
 RAW_KEY=$(openssl rand -base64 12)
 # 将随机密码计算为 SHA256 值作为 SSKEY
 SSKEY=$(printf "%s" "$RAW_KEY" | openssl dgst -sha256 -binary | base64)
