@@ -12,7 +12,7 @@ RAW_KEY=$(openssl rand -base64 12)
 SSKEY=$(printf "%s" "$RAW_KEY" | openssl dgst -sha256 -binary | base64)
 
 # 2. 获取 IPv4 和 IPv6 地址
-VPS_IPV4=$(curl -s --ipv4 http://v4.ipip.net/)
+VPS_IPV4=$(curl -s --ipv4 https://api.ipify.org/)
 VPS_IPV6=$(curl -s --ipv6 http://v6.ipip.net/)
 
 echo "VPS_IPV4: $VPS_IPV4"
